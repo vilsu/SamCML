@@ -1,0 +1,71 @@
+<!-- DO NOT get_template this to any file! -->
+
+{% extends templates/index.html %}
+
+<!-- TODO -->
+{% block title %}{{ object.title }}{% endblock %}
+{% block body_class %}{{ block.super }} post_detail {% endblock %}
+{% block body_id %}post_{{ object.id }}{% endblock %}
+
+
+
+{% block mainbar %}
+<!-- TODO inlines -->
+{% load code comments tagging_tags inlines markup %}
+<div id="mainbar">
+    {% for code in codes %}
+    <div id="code_symmary-{{ code_id }}">
+        <h3>
+            <a class="code_hyperlink" title="{{ title }}" href="/codes/{{ code-id }}/{{ title }}">{{ title }}</a>
+        </h3>
+        <div class="tags">
+            {% for tag in tags %}
+            <a class="post_tag" rel="tag" title="show codes tagged '{{ tag }}'" href="/codes/tagged/{{ tag }}">{{ tag }}</a>
+            {% endfor %}
+        </div>
+        <div class="started">
+            <span class="relativetime" title="{{ object.publish|date:"j F Y" }}">{{ started-human-time }} ago</span>
+            <a href="/users/{{ user-id }}/{{ user }}">{{ user }}</a>
+            <span class="reputation-score" title="reputation score">{{ reputation }}</span>
+        </div>
+
+
+        <!-- TODO change colour based on the amounts -->
+        <div class="votes">
+            <div class="mini-counts">{{ votes }}</div>
+            <div>votes</div>
+        </div>
+        <div class="status answered">
+            <div class="mini-counts">{{ answers }}</div>
+            <div>answers</div>
+        </div>
+        <div class="views">
+            <div class="mini-counts">{{ views }}</div>
+            <div>views</div>
+        </div>
+
+        <div class="comments">
+            {% for comment in comments %}
+            <div id="comment">
+                <p>{{ comment }} by <div id="comment_user"></p>
+                    <a href="/users/{{ comment-user_id }}/{{ comment-user }}/">{{ comment-user }}</a>
+                </div>
+                <p class="date">Posted at {{ comment.submit_date|date:"P" }} on {{ comment.submit_date|date:"F j, Y" }}</p>
+            </div>
+            {% endfor %}
+
+            {% if request.user.is_authenticated %}
+            <div id="comment_form">
+            {% comment_form for codes.entries entry.id with is_public yes %}
+            {% render_comment_form for object %}  <!-- TODO not sure about the object thing -->
+            </div>
+            {% else %}
+            <p>{{ block login_form }}</p> 
+            {% endif %}
+        </div>
+
+    </div>
+
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <!-- default title Sam's CML --> 
+        <title>{% block title %}Sam's commandline{% endblock %}</title>
+        <link rel="stylesheet" type="text/css" href="media/css/default.css" />
+    </head>
+
+    <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
+        <div id="body">
+            <!-- to print the amount of objects in the search for a keyword -->
+
+            {% comment %}
+            {% if GET.search % }
+            {% block count %}
+            
+            {% with codes|length as counter %}
+                {% if counter==1 %}
+                There is only code for the tag {{ name }}.
+                {% endif %}
+                {% if counter > 1 %}
+                There are {{ counter }} for the tag {{ name }}.
+                {% endif %}
+            {% endwith %
+            {% endblock %}
+            {% endif %}
+            {% endcomment %}
+
+
+
+
+
+            {% block body %}
+            {% if request.user.is_authenticated %}
+            <div class="user_bar">{% block user %}{% endblock %}</div>
+            {% endif %}
+
+            <div class="headline">
+                <h1 id="top">{% block headline %}Newest codes{% endblock %}</h1>
+            </div>
+            {% block form %}{% endblock %}
+
+            <div class="content">
+                {% block mainbar %}{% endblock %}
+            </div>
+            {% endblock %}
+
+        </div>
+    </body>
+</html>

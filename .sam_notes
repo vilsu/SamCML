@@ -1,0 +1,6 @@
+python manage.py validate // to see if you have problem with the current
+modules such as mysite.codes in the folder codes/modules
+    you also need to list the module mysite.codes as an installed app at
+/settings.py
+
+python manage.py sqlall codes

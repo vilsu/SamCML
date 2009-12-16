@@ -1,0 +1,15 @@
+{% extends templates/index.html %}
+
+{% block form %}
+    <textarea id="wmd-input" class="processed" tabindex="101" rows="15" cols="92"
+        name="post-text"/>
+
+
+    <!-- buttonCAdd fires up a jQuery which restricts the sending of the form
+    without content -->
+    {% if request.user.is_authenticated %}
+        <input class='buttonCAdd' onclick='checkFields();'
+        type='submit' value='Ask Your Question' /></form>
+        </form>
+    {% endif %}
+{% endblock %}
