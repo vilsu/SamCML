@@ -6,10 +6,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <!-- default title Sam's CML --> 
         <title>{% block title %}Sam's commandline{% endblock %}</title>
-        <link rel="stylesheet" type="text/css" href="media/css/default.css" />
+        <link rel="stylesheet" type="text/css" href="http://localhost/SamCML/media/css/default.css" />
     </head>
 
-    <body id="{% block body_id %}{% endblock %}" class="{% block body_class %}{% endblock %}">
+    <body>
         <div id="body">
             <!-- to print the amount of objects in the search for a keyword -->
 
@@ -33,7 +33,6 @@
 
 
 
-            {% block body %}
             {% if request.user.is_authenticated %}
             <div class="user_bar">{% block user %}{% endblock %}</div>
             {% endif %}
@@ -46,7 +45,6 @@
             <div class="content">
                 {% block mainbar %}{% endblock %}
             </div>
-            {% endblock %}
 
         </div>
     </body>

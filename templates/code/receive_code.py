@@ -1,7 +1,7 @@
 def receive_new_code:
-        $body = pg_escape_string ( $_POST['code']['body'] );
-        $title = pg_escape_string ( $_POST['code']['title'] );
-        $tags = $_POST['code']['tags'];
+        $body = POST.code.body
+        $title = POST.code.title
+        $tags = POST.code.tags
 
         # login validation
         # body, tags validatian

@@ -2,15 +2,12 @@
 
 {% extends templates/index.html %}
 
-<!-- TODO -->
-{% block title %}{{ object.title }}{% endblock %}
-{% block body_class %}{{ block.super }} post_detail {% endblock %}
-{% block body_id %}post_{{ object.id }}{% endblock %}
+
+{% block title %}{{ title }}{% endblock %}
 
 
 
 {% block mainbar %}
-<!-- TODO inlines -->
 {% load code comments tagging_tags inlines markup %}
 <div id="mainbar">
     {% for code in codes %}

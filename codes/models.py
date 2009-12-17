@@ -15,6 +15,10 @@ class Author(models.Model):
     def __unicode__(self):
         return self.title
 
+class Votes(models.Model):
+    upVote = models.IntegerField(default=0)
+    downVote = models.IntegerField(default=0)
+
 class Code(models.Model):
     title = models.CharField(max_length=150, null=False)
     tags = models.ManyToManyField(Tag, null=False)
@@ -22,6 +26,9 @@ class Code(models.Model):
     pub_date = models.DateField()
     authors = models.ManyToManyField(Author)
     history = models.ManyToManyField(history.History)
+    votes = models.ManyToManyField(Votes)
+
+
 
 # nice presentation in p1 = (name='sami'); p1.save; ...; p1 ... in unicode
     def __unicode__(self):

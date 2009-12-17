@@ -6,6 +6,8 @@ from types import *     # to get IntType for if-loops
 from django.contrib.sessions.models import Session
 from django.contrib import auth
 
+import codes
+
 # TODO session
 # pk = random.getrandbits(100)
 #s = Session.objects.get(pk)
@@ -15,8 +17,21 @@ from django.contrib import auth
 # to understand the data by s.get_decoded()
 
 
+def getTitles():
+    if GET.user:
+        title = "Codes by ", {{ GET.user }}
+    if GET.tag:
+        title = "Codes by ", {{ GET.tag }}
 
 
+def getVotes():
+    votes = codes.upvote - codes.downvote
+
+
+def getAnswers():
+
+
+def getViewCounts():
 
 
 
